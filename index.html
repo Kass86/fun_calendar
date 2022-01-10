@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>New Calendar</title>
+  </head>
+  <body>
+    <div class="theme">
+      <div class="left_tab">
+        <div class="mini_calendar_container">
+          <div class="header_mini">
+            <button id="backButton_mini"><</button>
+            <div class="monthDisplay_mini"></div>
+            <button id="nextButton_mini">></button>
+          </div>
+          <div class="weekdays_mini">
+            <div>SUN</div>
+            <div>MON</div>
+            <div>TUE</div>
+            <div>WED</div>
+            <div>THU</div>
+            <div>FRI</div>
+            <div>SAT</div>
+          </div>
+          <div class="calendar_mini"></div>
+        </div>
+
+        <div class="job__container">
+          <div class="job__header">
+            <div class="job__header__text">Upcoming Events</div>
+            <button id="viewAllButton">View All</button>
+          </div>
+          <div class="job__daytime"></div>
+          <!-- Event modal -->
+          <!-- <div class="modal">
+            <div>
+              <div class="modal__event__title">Hop lop ne</div>
+              <div class="modal__event__time">9 AM - 9:30 AM GMT+8</div>
+              <div class="modal__event__client">
+                <img class="avatar__img" src="img/img-1.jpg" rel="avatar" />
+                <div class="modal__event_client__text" href="#">
+                  View Client Profile
+                </div>
+              </div>
+            </div>
+            <img
+              class="zoomIcon"
+              src="img/zoom_logo_icon_188426.png"
+              rel="zoomIcon"
+            />
+          </div>
+          <div class="modal">
+            <div>
+              <div class="modal__event__title">Hop lop ne</div>
+              <div class="modal__event__time">9 AM - 9:30 AM GMT+8</div>
+              <div class="modal__event__client">
+                <img class="avatar__img" src="img/img-1.jpg" rel="avatar" />
+
+                <div class="modal__event_client__text" href="#">
+                  View Client Profile
+                </div>
+              </div>
+            </div>
+            <img
+              class="zoomIcon"
+              src="img/zoom_logo_icon_188426.png"
+              rel="zoomIcon"
+            />
+          </div>
+          <div class="modal">
+            <div>
+              <div class="modal__event__title">Hop lop ne</div>
+              <div class="modal__event__time">9 AM - 9:30 AM GMT+8</div>
+              <div class="modal__event__client">
+                <img class="avatar__img" src="img/img-1.jpg" rel="avatar" />
+
+                <div class="modal__envent_client__text" href="#">
+                  View Client Profile
+                </div>
+              </div>
+            </div>
+          </div> -->
+        </div>
+      </div>
+      <div class="right_tab">
+        <div class="calendar_container">
+          <div class="header">
+            <div class="left_header_container">
+              <button id="todayButton">Today</button>
+              <button id="backButton"><</button>
+              <button id="nextButton">></button>
+              <div class="monthDisplay"></div>
+            </div>
+            <button id="monthButton">Month ></button>
+          </div>
+          <div class="weekdays">
+            <div>Sun</div>
+            <div>Mon</div>
+            <div>Tue</div>
+            <div>Wed</div>
+            <div>Thu</div>
+            <div>Fri</div>
+            <div>Sat</div>
+          </div>
+          <div class="calendar"></div>
+          <ul class="month_selector hidden">
+            <li>January</li>
+            <li>February</li>
+            <li>March</li>
+            <li>April</li>
+            <li>May</li>
+            <li>June</li>
+            <li>July</li>
+            <li>August</li>
+            <li>September</li>
+            <li>October</li>
+            <li>November</li>
+            <li>December</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="eventModal hidden">
+      <div class="evenModal__header">
+        <div class="evenModal__header__text"></div>
+        <button class="btn--close-modal">&times;</button>
+      </div>
+      <div class="eventModal__container"></div>
+    </div>
+    <div class="overlay hidden"></div>
+    <script src="script.js"></script>
+  </body>
+</html>

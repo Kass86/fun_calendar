@@ -1,0 +1,384 @@
+:root {
+  --blue-light: #5684ae;
+  --blue-dark: #0f4c81;
+  --orange-light: #ffe4c8;
+  --orange-dark: #f9be81;
+  --color-title: #e4f6ed;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+.theme {
+  height: 100vh;
+  background-color: var(--color-title);
+  display: flex;
+  gap: 10px;
+  position: relative;
+}
+.left_tab {
+  height: 100%;
+  flex: 1;
+  display: grid;
+  grid-template-rows: 1.5fr 2fr;
+}
+
+.job__container {
+  margin-left: 50px;
+  padding: 25px 20px 10px 20px;
+  width: 310px;
+  background-color: white;
+  border: 0.5px solid rgb(189, 186, 186);
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+.right_tab {
+  height: 100%;
+  flex: 2;
+  /* background-color: rgb(76, 154, 218); */
+}
+.calendar_container {
+  background-color: white;
+  width: 610px;
+  position: relative;
+  margin-top: 10px;
+  border: 0.5px solid rgb(189, 186, 186);
+  border-radius: 5px;
+}
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.left_header_container {
+  display: flex;
+}
+.weekdays {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+.weekdays div {
+  padding: 10px;
+  text-align: center;
+  color: rgb(189, 186, 186);
+  font-weight: 500;
+  font-size: larger;
+}
+.calendar {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  border-top: 0.5px solid rgb(189, 186, 186);
+}
+.day {
+  aspect-ratio: 1;
+  padding-top: 10px;
+  background-color: white;
+  text-align: center;
+  border: solid rgb(189, 186, 186) 0.5px;
+  font-size: smaller;
+  box-sizing: border-box;
+}
+.event {
+  cursor: pointer;
+}
+.padding {
+  color: rgb(189, 186, 186);
+}
+#newEventModal {
+  display: none;
+}
+
+#monthButton {
+  background-color: var(--blue-light);
+  margin: 20px 20px 20px 0;
+  padding: 0 20px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  color: white;
+}
+#todayButton {
+  border-radius: 10px;
+  border: 2px solid var(--blue-light);
+  color: var(--blue-light);
+  padding: 8px 16px;
+  margin: 20px;
+  background-color: white;
+  cursor: pointer;
+}
+#backButton,
+#nextButton {
+  margin: 20px 5px;
+  border: none;
+  background-color: white;
+  cursor: pointer;
+  font-size: larger;
+  color: var(--blue-light);
+}
+.monthDisplay {
+  margin: 20px 10px;
+  color: var(--blue-dark);
+  font-size: 25px;
+  font-weight: 600;
+  text-align: center;
+  justify-content: center;
+}
+.month_selector {
+  position: absolute;
+  top: 56px;
+  right: 10px;
+  width: 100px;
+  transition: all 0.3s;
+  padding: 0;
+}
+.month_selector li {
+  list-style: none;
+  padding: 5px 10px;
+  margin: 0;
+  background: #648eb6;
+  color: white;
+  cursor: pointer;
+}
+.month_selector li:hover {
+  background: #4c779e;
+  font-weight: 600;
+}
+.calendar__event__title {
+  margin-top: 0.9px;
+  padding: 3px 2px;
+  width: 84px;
+  border-left: 3px solid #648eb6;
+  background-color: var(--orange-light);
+  border-radius: 3px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: smaller;
+  text-align: left;
+  box-sizing: border-box;
+  color: var(--blue-dark);
+}
+.more {
+  font-size: smaller;
+  padding-left: 3px;
+  text-align: left;
+  cursor: pointer;
+  color: var(--blue-dark);
+}
+
+.hidden {
+  visibility: hidden;
+  opacity: 0;
+}
+.hiddenAll {
+  display: none;
+}
+/* mini calendar */
+.mini_calendar_container {
+  margin-left: 50px;
+  margin-top: 10px;
+  width: 250px;
+  min-height: 285px;
+  background-color: white;
+  padding: 0 50px;
+  border: 0.5px solid rgb(189, 186, 186);
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+.weekdays_mini {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  align-items: center;
+}
+.weekdays_mini div {
+  width: 100%;
+  text-align: center;
+  color: rgb(189, 186, 186);
+  font-weight: 500;
+  font-size: 12px;
+}
+.calendar_mini {
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+.calendar_mini div {
+  border: none;
+  font-size: 12px;
+  margin: auto;
+}
+.header_mini {
+  padding: 20px 0 10px 0;
+  display: flex;
+  justify-content: center;
+}
+.monthDisplay_mini {
+  text-align: center;
+  width: 120px;
+  padding-top: 3px;
+  color: var(--blue-dark);
+  font-weight: 600;
+}
+.day__mini {
+  aspect-ratio: 1;
+  padding: 10px;
+  background-color: white;
+  cursor: pointer;
+  text-align: center;
+  border: solid rgb(189, 186, 186) 0.5px;
+  font-size: smaller;
+}
+#backButton_mini,
+#nextButton_mini {
+  border: none;
+  background-color: white;
+  cursor: pointer;
+  font-size: larger;
+  color: var(--blue-light);
+}
+
+.today__active {
+  border-radius: 50% 50%;
+  background-color: var(--blue-dark);
+  color: white;
+}
+.today {
+  padding: 5px;
+}
+
+/* comming Event */
+.job__header {
+  display: flex;
+  justify-content: space-between;
+}
+.job__header__text {
+  color: var(--blue-dark);
+  font-size: 20px;
+  font-weight: 600;
+}
+.job__daytime {
+  color: rgb(189, 186, 186);
+  margin-bottom: 10px;
+  font-size: 15px;
+  font-weight: 600;
+}
+.modal {
+  padding: 10px 10px 0 10px;
+  width: auto;
+  min-height: 50px;
+  background-color: var(--orange-light);
+  border-radius: 7px;
+  border-left: 7px solid var(--blue-dark);
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+.modal__event__title {
+  color: var(--blue-dark);
+  font-weight: 600;
+  margin-bottom: 7px;
+  font-size: 15px;
+}
+.modal__event__time {
+  color: rgb(189, 186, 186);
+  font-size: 11px;
+  margin-bottom: 5px;
+}
+.modal__event__client {
+  display: flex;
+  align-items: center;
+  padding-bottom: 5px;
+}
+.avatar__img {
+  height: 30px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+.modal__event_client__text {
+  font-size: smaller;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.modal div {
+  max-width: 200px;
+  /* padding-bottom: 5px; */
+}
+.zoomIcon {
+  height: 40px;
+  aspect-ratio: 1;
+  padding: 0;
+  cursor: pointer;
+}
+.zoomIcon:hover {
+  transform: scale(1.1);
+}
+#viewAllButton {
+  border: none;
+  color: white;
+  font-size: 10px;
+  background-color: var(--blue-light);
+  border-radius: 20px;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+/* eventmodal */
+.eventModal {
+  position: fixed;
+  width: 300px;
+  height: 500px;
+  background-color: whitesmoke;
+  top: 40px;
+  left: 500px;
+  padding: 20px;
+  z-index: 1000;
+  box-shadow: 0 2rem 3rem rgb(0 0 0 / 30%);
+  border-radius: 5px;
+}
+.eventModal__header {
+  display: flex;
+  justify-content: space-between;
+}
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  z-index: 100;
+  transition: all 0.5s;
+}
+.btn--close-modal {
+  font-family: inherit;
+  color: inherit;
+  position: absolute;
+  top: 0.5rem;
+  right: 1rem;
+  font-size: 2rem;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+.evenModal__header__text {
+  color: var(--blue-dark);
+  font-size: 20px;
+  padding-bottom: 15px;
+}
+
+.eventModal__container {
+  height: 450px;
+  overflow-y: scroll;
+}
+.eventModal__container::-webkit-scrollbar {
+  width: 0;
+}
