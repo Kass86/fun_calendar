@@ -110,14 +110,9 @@ const fakeData1 = [
         clProfileUrl: "",
         zoomUrl: "",
       },
-    ],
-  },
-  {
-    date: "29/1/2022",
-    event: [
       {
         type: "appointment",
-        code: "123456",
+        code: "12345611111",
         title: "Gap sep",
         time: "9 AM - 9:30 AM GMT+8",
         clAvatarUrl: "",
@@ -211,7 +206,9 @@ function load() {
           .filter((data, i) => i < 2)
           .map(
             (data) =>
-              `<div class="calendar__event__title"> ${data.title} </div>`
+              `<div class="calendar__event__title ${
+                data.type === "event" ? "modal__event" : ""
+              }"> ${data.title} </div>`
           )
           .join("");
         if (dataOfThisDay.event.length > 2) {
@@ -222,7 +219,7 @@ function load() {
         daySquare.insertAdjacentHTML("beforeend", markup);
       }
 
-      daySquare.addEventListener("click", () => console.log("Add Task"));
+      // daySquare.addEventListener("click", () => console.log("Add Task"));
     }
     if (i > paddingPreviousDays + daysInMonth) {
       daySquare.innerText = i - daysInMonth - paddingPreviousDays;
@@ -306,10 +303,12 @@ function loadUpcomingEventContainer() {
           else {
             codeExist.push(miniEvent.code);
             return `
-      <div class="modal">
+      <div class="modal ${miniEvent.type === "event" ? "modal__event" : ""}">
       <div>
         <div class="modal__event__title"> ${miniEvent.title}</div>
-        <div class="modal__event__time"> ${miniEvent.time}</div>
+        <div class="modal__event__time ${
+          miniEvent.type === "event" ? "time__event" : ""
+        }"> ${miniEvent.time}</div>
         ${
           miniEvent.type === "appointment"
             ? `<div class="modal__event__client">
@@ -353,10 +352,12 @@ function loadFullUpcomingEventContainer() {
           else {
             codeExist.push(miniEvent.code);
             return `
-      <div class="modal">
+      <div class="modal ${miniEvent.type === "event" ? "modal__event" : ""}">
       <div>
         <div class="modal__event__title"> ${miniEvent.title}</div>
-        <div class="modal__event__time"> ${miniEvent.time}</div>
+        <div class="modal__event__time ${
+          miniEvent.type === "event" ? "time__event" : ""
+        }"> ${miniEvent.time}</div>
         ${
           miniEvent.type === "appointment"
             ? `<div class="modal__event__client">
@@ -394,10 +395,12 @@ function loadEventOfDay(day) {
   let markup = day.event
     .map(function (miniEvent) {
       return `
-      <div class="modal">
+      <div class="modal ${miniEvent.type === "event" ? "modal__event" : ""}">
       <div>
         <div class="modal__event__title"> ${miniEvent.title}</div>
-        <div class="modal__event__time"> ${miniEvent.time}</div>
+        <div class="modal__event__time ${
+          miniEvent.type === "event" ? "time__event" : ""
+        }"> ${miniEvent.time}</div>
         ${
           miniEvent.type === "appointment"
             ? `<div class="modal__event__client">
@@ -497,6 +500,7 @@ function initButton() {
     overlay.classList.add("hidden");
   });
   overlay.addEventListener("click", () => {
+    evenModalContainer.innerHTML = "";
     eventModal.classList.add("hidden");
     overlay.classList.add("hidden");
   });

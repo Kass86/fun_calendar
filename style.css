@@ -280,6 +280,12 @@ body {
   display: flex;
   justify-content: space-between;
 }
+.modal__event {
+  background-color: var(--orange-dark);
+}
+.modal__event__time.time__event {
+  color: black;
+}
 .modal__event__title {
   color: var(--blue-dark);
   font-weight: 600;
