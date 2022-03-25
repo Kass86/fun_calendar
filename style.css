@@ -78,7 +78,7 @@ body {
 }
 .day {
   aspect-ratio: 1;
-  padding-top: 10px;
+
   background-color: white;
   text-align: center;
   border: solid rgb(189, 186, 186) 0.5px;
@@ -191,6 +191,7 @@ body {
   border: 0.5px solid rgb(189, 186, 186);
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
+  border-bottom: none;
 }
 .weekdays_mini {
   display: grid;
@@ -212,7 +213,6 @@ body {
 .calendar_mini div {
   border: none;
   font-size: 12px;
-  margin: auto;
 }
 .header_mini {
   padding: 20px 0 10px 0;
@@ -245,12 +245,18 @@ body {
 }
 
 .today__active {
-  border-radius: 50% 50%;
   background-color: var(--blue-dark);
   color: white;
 }
+
+.today__active__mini {
+  background-color: var(--blue-dark);
+  color: white;
+  border-radius: 50%;
+}
+
 .today {
-  padding: 5px;
+  display: block;
 }
 
 /* comming Event */

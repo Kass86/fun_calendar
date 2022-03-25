@@ -1,5 +1,8 @@
 let nav = 0;
 let nav2 = 0;
+let today = new Date();
+let todayDay = new Date().getDate();
+console.log(todayDay);
 let clicked = null;
 let events;
 // events = localStorage.getItem("events")
@@ -271,7 +274,7 @@ function loadMiniCalendar() {
       daySquare.innerText = i - paddingPreviousDays;
       daySquare.addEventListener("click", () => console.log("Add Task"));
       if (i === paddingPreviousDays + day && nav2 === 0) {
-        daySquare.classList.add("today__active");
+        daySquare.classList.add("today__active__mini");
       }
     }
     if (i > paddingPreviousDays + daysInMonth) {
@@ -295,8 +298,18 @@ function loadUpcomingEvent() {
 function loadUpcomingEventContainer() {
   const codeExist = [];
   let markup = fakeData
-    .map((ev) =>
-      ev.event
+    .map((ev) => {
+      const dateConvert = ev.date
+        .split("/")
+        .reverse()
+        .map((e, i) => (i === 1 ? --e : +e));
+      const DateToCompare = new Date(
+        dateConvert[0],
+        dateConvert[1],
+        dateConvert[2]
+      );
+      if (DateToCompare < today) return;
+      return ev.event
         .map(function (miniEvent) {
           if (codeExist.length > 2) return; // 3 event display ob upcommingEvents
           if (codeExist.some((code) => code === miniEvent.code)) return;
@@ -334,8 +347,8 @@ function loadUpcomingEventContainer() {
   `;
           }
         })
-        .join("")
-    )
+        .join("");
+    })
     .join("");
 
   jobContainer.insertAdjacentHTML("beforeend", markup);
@@ -345,8 +358,20 @@ function loadFullUpcomingEventContainer() {
   eventModalHeader.innerHTML = "Upcoming Events";
   const codeExist = [];
   let markup = fakeData
-    .map((ev) =>
-      ev.event
+    .map((ev) => {
+      const dateConvert = ev.date
+        .split("/")
+        .reverse()
+        .map((e, i) => (i === 1 ? --e : +e));
+      const DateToCompare = new Date(
+        dateConvert[0],
+        dateConvert[1],
+        dateConvert[2]
+      );
+      if (DateToCompare < today) return;
+      // chuyen từ [1/1/2020] => string 2020/0/1 để so sánh ngày
+
+      return ev.event
         .map(function (miniEvent) {
           if (codeExist.some((code) => code === miniEvent.code)) return;
           else {
@@ -383,8 +408,8 @@ function loadFullUpcomingEventContainer() {
   `;
           }
         })
-        .join("")
-    )
+        .join("");
+    })
     .join("");
 
   evenModalContainer.insertAdjacentHTML("beforeend", markup);
@@ -511,6 +536,7 @@ function initButton() {
     .addEventListener("click", function (e) {
       e.preventDefault();
       const target = e.target.closest(".day")?.classList[2];
+      console.log(target);
       if (target) {
         const dataOfDay = fakeData.find((event) => event.date === target);
         loadEventOfDay(dataOfDay);
